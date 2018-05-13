@@ -1,5 +1,9 @@
 package com.example.webdevhw.repositories;
 
-public interface UserRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import com.example.webdevhw.models.User;
+
+public interface UserRepository extends CrudRepository<User, Integer>{
 
 }

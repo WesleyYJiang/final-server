@@ -1,19 +1,27 @@
 //IIFE
-(funciton() {
+(function(){
 	jQuery(main);
-	fuction main() {
-		var tr =$('.template');
-		
-		var users = [{username: 'bob'}, {username: 'charlie'}]
-		
-		var tbody = $('tbody');
-		
-		
-		for(var i = 0; i < users.length: i++){
-			var user = users[i];
-			var clone = tr.clone();
-			clone.find('.username').html(user.username);
-			tbody.append(clone);
-		}
+	
+    var tbody;
+    var template;
+	
+    function main() {
+		tbody = $('tbody');
+        template = $('.template');
+		var promise = fetch("http://localhost:8080/api/user");
+		promise.then(function (response) {
+			return response.json();
+		}).then(renderUsers)
 	}
+	
+    function renderUsers(users) {
+        for(var i = 0; i < users.length; i++) {
+            var user = users[i];
+            var clone = template.clone();
+
+            clone.find('.username').html(user.username);
+            tbody.append(clone);
+        }
+        
+    } 
 })();
