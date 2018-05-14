@@ -32,7 +32,6 @@
             clone.find('.wbdv-role').html(user.role);
             tbody.append(clone);
         }
-        
     }
     
     function createUser() {
