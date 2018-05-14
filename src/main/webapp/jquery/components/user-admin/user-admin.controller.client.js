@@ -19,9 +19,13 @@
     }
 	
     function renderUsers(users) {
+    	tbody.empty();
         for(var i = 0; i < users.length; i++) {
             var user = users[i];
             var clone = template.clone();
+            clone.attr('id', user.id);
+            clone.find('.delete').click(deleteUser);
+            clone.find('.edit').click(editUser);
 
             clone.find('.username').html(user.username);
             tbody.append(clone);
@@ -43,5 +47,17 @@
         };
 
         userService.createUser(user).then(findAllUsers);
+    }
+    
+    function deleteUser(event) {
+        var deleteBtn = $(event.currentTarget);
+        var userId = deleteBtn.parent().parent().attr('id');
+
+        userService.deleteUser(userId).then(findAllUsers);
+    }
+
+    function editUser(event) {
+        console.log('editUser');
+        console.log(event);
     }
 })(); 
