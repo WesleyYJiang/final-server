@@ -11,17 +11,17 @@ function UserServiceClient() {
 
     function findUserById(userId) {
         return fetch(self.url + '/' + userId)
-            .then(function(response){
+            .then(function (response) {
                 return response.json();
             });
     }
-    
+
     function findAllUsers() {
         return fetch(self.url).then(function (response) {
-                return response.json();
-            });
+            return response.json();
+        });
     }
-    
+
     function createUser(user) {
         return fetch(self.url, {
             method: 'post',
@@ -29,20 +29,20 @@ function UserServiceClient() {
             headers: {'content-type': 'application/json'}
         });
     }
-    
+
     function deleteUser(userId) {
         return fetch(self.url + '/' + userId, {
             method: 'delete'
         })
     }
-    
+
     function findUserById(userId) {
         return fetch(self.url + '/' + userId)
-            .then(function(response){
+            .then(function (response) {
                 return response.json();
             });
     }
-    
+
     function updateUser(userId, user) {
         return fetch(self.url + '/' + userId, {
             method: 'put',
@@ -51,13 +51,13 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         })
-        .then(function(response){
-            if(response.bodyUsed) {
-                return response.json();
-            } else {
-                return null;
-            }
-        });
+            .then(function (response) {
+                if (response.bodyUsed) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            });
     }
 
 }

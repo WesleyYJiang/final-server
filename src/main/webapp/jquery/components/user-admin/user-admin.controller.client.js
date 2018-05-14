@@ -27,6 +27,9 @@
             clone.find('.wbdv-edit').click(editUser);
 
             clone.find('.wbdv-username').html(user.username);
+            clone.find('.wbdv-first-name').html(user.firstName);
+            clone.find('.wbdv-last-name').html(user.lastName);
+            clone.find('.wbdv-role').html(user.role);
             tbody.append(clone);
         }
         
@@ -37,12 +40,14 @@
         var password = $('#passwordFld').val();
         var firstName = $('#firstNameFld').val();
         var lastName = $('#lastNameFld').val();
+        var role = $('#roleFld').val();
 
         var user = {
             username: username,
             password: password,
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
+            role: role
         };
 
         userService.createUser(user).then(findAllUsers);
