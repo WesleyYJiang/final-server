@@ -8,9 +8,8 @@
 	
     function main() {
 		tbody = $('tbody');
-        template = $('.template');
-		var promise = fetch("http://localhost:8080/api/user");
-		$('#createUser').click(createUser);
+        template = $('.wbdv-template');
+        $('#wbdv-create').click(createUser);
 		findAllUsers();
 	}
     
@@ -24,10 +23,10 @@
             var user = users[i];
             var clone = template.clone();
             clone.attr('id', user.id);
-            clone.find('.delete').click(deleteUser);
-            clone.find('.edit').click(editUser);
+            clone.find('.wbdv-remove').click(deleteUser);
+            clone.find('.wbdv-edit').click(editUser);
 
-            clone.find('.username').html(user.username);
+            clone.find('.wbdv-username').html(user.username);
             tbody.append(clone);
         }
         
@@ -51,7 +50,7 @@
     
     function deleteUser(event) {
         var deleteBtn = $(event.currentTarget);
-        var userId = deleteBtn.parent().parent().attr('id');
+        var userId = deleteBtn.parent().parent().parent().attr('id');
 
         userService.deleteUser(userId).then(findAllUsers);
     }
