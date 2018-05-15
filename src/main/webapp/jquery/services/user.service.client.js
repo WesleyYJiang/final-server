@@ -4,6 +4,7 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.findUserById = findUserById;
     this.updateUser = updateUser;
+    this.findUserByUsername = findUserByUsername();
 //    this.login = login();
     this.url =
         '/api/user';
@@ -47,16 +48,20 @@ function UserServiceClient() {
         return fetch(self.url + '/' + userId, {
             method: 'put',
             body: JSON.stringify(user),
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-            .then(function (response) {
+            headers: {'content-type': 'application/json'}
+        }).then(function (response) {
                 if (response.bodyUsed) {
                     return response.json();
                 } else {
                     return null;
                 }
+            });
+    }
+
+    function findUserByUsername(username) {
+        return fetch(self.url + '/' + userId)
+            .then(function (response) {
+                return response.json();
             });
     }
 
