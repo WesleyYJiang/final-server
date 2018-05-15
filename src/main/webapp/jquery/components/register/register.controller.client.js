@@ -10,15 +10,12 @@
         $passwordFld = $("#passwordFld");
         $verifyPasswordFld = $("#verifyPasswordFld");
         $registerBtn = $("#registerBtn").click(createUser);
-
-        findUserById(12);
     }
 
-    function createUser() {
-        if($passwordFld != $verifyPasswordFld) {
-            alert('Passwords do not match!')
-        }
-        else {
+    function createUser(){
+        console.log($passwordFld.val())
+        console.log($verifyPasswordFld.val())
+        if ($passwordFld === $verifyPasswordFld){
             var user = {
                 username: $usernameFld.val(),
                 firstName: $firstNameFld.val(),
@@ -27,6 +24,9 @@
             };
 
             userService.createUser(user).then(success());
+        }
+        else {
+            alert('Passwords do not match!')
         }
     }
 

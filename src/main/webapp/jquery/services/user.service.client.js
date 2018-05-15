@@ -59,7 +59,7 @@ function UserServiceClient() {
     }
 
     function findUserByUsername(username) {
-        return fetch(self.url + '/' + userId)
+        return fetch(self.url + '/' + username)
             .then(function (response) {
                 return response.json();
             });
