@@ -4,48 +4,61 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.findUserById = findUserById;
     this.updateUser = updateUser;
-    this.findUserByUsername = findUserByUsername();
+    this.register = register;
 //    this.login = login();
-    this.url =
-        '/api/user';
+    this.url = '/api/';
     var self = this;
 
     function findUserById(userId) {
-        return fetch(self.url + '/' + userId)
+        return fetch(self.url + 'user/' + userId)
             .then(function (response) {
                 return response.json();
             });
     }
 
     function findAllUsers() {
-        return fetch(self.url).then(function (response) {
+        return fetch(self.url + 'user/').then(function (response) {
             return response.json();
         });
     }
 
     function createUser(user) {
-        return fetch(self.url, {
+        return fetch(self.url + 'user/', {
             method: 'post',
             body: JSON.stringify(user),
             headers: {'content-type': 'application/json'}
         });
     }
 
+    function register(user) {
+        return fetch('/api/register' , {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {'content-type': 'application/json'}
+        }).then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        }).catch(function(error) {
+            console.log("here")
+            alert('username is taken!');
+        });
+    }
+    function success(response) {
+        if(response !== null) {
+            alert('Your account is created!');
+        }
+    }
+
     function deleteUser(userId) {
-        return fetch(self.url + '/' + userId, {
+        return fetch(self.url + 'user/' + userId, {
             method: 'delete'
         })
     }
 
-    function findUserById(userId) {
-        return fetch(self.url + '/' + userId)
-            .then(function (response) {
-                return response.json();
-            });
-    }
-
     function updateUser(userId, user) {
-        return fetch(self.url + '/' + userId, {
+        return fetch(self.url + 'user/' + userId, {
             method: 'put',
             body: JSON.stringify(user),
             headers: {'content-type': 'application/json'}
@@ -58,11 +71,5 @@ function UserServiceClient() {
             });
     }
 
-    function findUserByUsername(username) {
-        return fetch(self.url + '/' + username)
-            .then(function (response) {
-                return response.json();
-            });
-    }
 
 }

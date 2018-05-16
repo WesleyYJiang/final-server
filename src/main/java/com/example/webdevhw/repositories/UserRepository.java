@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Integer>{
-  @Query("select username from User u where u.username = :username")
-  public Optional<User> findUserByUsername(@Param("username") String username);
+  @Query("select u from User u where u.username = :username")
+  Optional<User> findUserByUsername(@Param("username") String username);
 }
