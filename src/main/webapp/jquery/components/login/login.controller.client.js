@@ -10,19 +10,6 @@
     }
 
     function login(){
-
-        if ($passwordFld.val() === $verifyPasswordFld.val()){
-            var user = {
-                username: $usernameFld.val(),
-                password: $passwordFld.val(),
-                firstName: $firstNameFld.val(),
-                lastName: $lastNameFld.val(),
-                role: "Student"
-            };
-            userService.register(user);
-        }
-        else {
-            alert('Passwords do not match!')
-        }
+        userService.login($usernameFld, $passwordFld);
     }
 })();

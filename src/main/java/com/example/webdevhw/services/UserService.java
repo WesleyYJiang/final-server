@@ -45,8 +45,10 @@ public class UserService {
   public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
     Optional<User> data = repository.findById(userId);
     if (data.isPresent()) {
-      User user = data.get();
-      user.setFirstName(newUser.getFirstName());
+      User user = data.get();;
+      user.setEmail(newUser.getEmail());
+      user.setDateOfBirth(newUser.getDateOfBirth());
+      user.setPhone(newUser.getPhone());
       repository.save(user);
       return user;
     }
@@ -81,15 +83,16 @@ public class UserService {
     }
   }
 
-  @GetMapping("/api/test/{username}")
-  public String t(@PathVariable String username) {
-    if(this.findUserByUsername(username) == null){
-      return "add user";
+  @PostMapping("/api/login")
+  public User login(@RequestBody User user) {
+    Optional<User> data = repository.findUserByUsernameAndPassword(
+            user.getUsername(), user.getPassword());
+    if (data.isPresent()) {
+      return data.get();
     }
-    else{
-      return "already exist";
-    }
+    return null;
   }
+
 
 
 }
