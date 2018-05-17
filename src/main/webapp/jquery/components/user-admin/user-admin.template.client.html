@@ -1,69 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+          crossorigin="anonymous">
 
-<title>Insert title here</title>
+    <title>User Admin</title>
 </head>
 <body>
-	<div class = "container">
-		<h1>User Admin</h1>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Username</th>
-					<th>Password</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Role</th>
-					<th>&nbsp;</th>
-				</tr>
-				<tr class="wbdv-form">
-				  <td><input id="usernameFld" class="form-control"
-				    placeholder="Username" /></td>
-				  <td><input id="passwordFld" class="form-control"
-				    placeholder="Password" /></td>
-				  <td><input id="firstNameFld" class="form-control"
-				    placeholder="First Name" /></td>
-				  <td><input id="lastNameFld" class="form-control"
-				    placeholder="Last Name" /></td>
-				  <td><select id="roleFld" class="form-control">
-				      <option value="FACULTY">Faculty</option>
-				      <option value="STUDENT">Student</option>
-				  </select></td>
-				  <td><span class="float-right" style="white-space: nowrap">
+<div class="container">
+    <h1>User Admin</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Role</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr class="wbdv-form">
+            <td><input id="usernameFld" class="form-control"
+                       placeholder="Username"/></td>
+            <td><input id="passwordFld" class="form-control"
+                       placeholder="Password"/></td>
+            <td><input id="firstNameFld" class="form-control"
+                       placeholder="First Name"/></td>
+            <td><input id="lastNameFld" class="form-control"
+                       placeholder="Last Name"/></td>
+            <td><select id="roleFld" class="form-control">
+                <option value="FACULTY">Faculty</option>
+                <option value="STUDENT">Student</option>
+            </select></td>
+            <td><span class="float-right" style="white-space: nowrap">
 				      <i class="fa-2x fa fa-search wbdv-search"></i> 
-				      <i id="wbdv-create" class="fa-2x fa fa-plus wbdv-create"></i> 
-				      <i class="fa-2x fa fa-check wbdv-update"></i>
+				      <i id="wbdv-create" class="fa-2x fa fa-plus wbdv-create"></i>
+				      <i id="wbdv-save" class="fa-2x fa fa-check wbdv-update"></i>
 				  </span></td>
-				</tr>
-			</thead>
-			<tbody class="wbdv-tbody">
-				<tr class="wbdv-template wbdv-user wbdv-hidden">
-				<td class="wbdv-username">ada</td>
-				<td>&nbsp;</td>
-				<td class="wbdv-first-name">Ada</td>
-				<td class="wbdv-last-name">Lovelace</td>
-				<td class="wbdv-role">FACULTY</td>
-				<td class="wbdv-actions">
+        </tr>
+        </thead>
+        <tbody class="wbdv-tbody">
+        <tr class="wbdv-template wbdv-user wbdv-hidden">
+            <td class="wbdv-username">ada</td>
+            <td>&nbsp;</td>
+            <td class="wbdv-first-name">Ada</td>
+            <td class="wbdv-last-name">Lovelace</td>
+            <td class="wbdv-role">FACULTY</td>
+            <td class="wbdv-actions">
 				<span class="float-right">
 					<i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
 					<i id="wbdv-edit" class="fa-2x fa fa-pencil-alt wbdv-edit"></i>
 				</span>
-				</td>
-				</tr>
-			</tbody>
-			<tfoot></tfoot>
-		</table>
-	</div>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
 </body>
 <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-<script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"
+        integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
+        crossorigin="anonymous"></script>
 <script src="../../services/user.service.client.js"></script>
 <script src="user-admin.controller.client.js"></script>
 

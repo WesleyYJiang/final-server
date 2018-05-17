@@ -5,9 +5,17 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.register = register;
-    //this.login = login();
+    this.loadProfile = loadProfile;
+    this.logout = logout;
+    this.login = login;
     this.url = '/api/';
     var self = this;
+
+    function logout(){
+        return fetch('/api/logout', {
+            method: 'post',
+            credentials: 'same-origin'});
+    }
 
     function findUserById(userId) {
         return fetch(self.url + 'user/' + userId)
@@ -16,17 +24,22 @@ function UserServiceClient() {
             });
     }
 
-    // function login(username, password) {
-    //     return fetch('/api/login', {
-    //         method: 'post',
-    //         body: JSON.stringify({username:username, password: password}),
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         }
-    //     }).then(function (response) {
-    //         return response.json();
-    //     });
-    // }
+    function login(username, password) {
+        return fetch('/api/login', {
+            method: 'post',
+            credentials: 'same-origin',
+            body: JSON.stringify({username: username, password: password}),
+            headers: {'content-type': 'application/json'}
+        }).then(function(response){
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            window.location.href= "/jquery/components/profile/profile.template.client.html"
+        }).catch(function(error) {
+            console.log(error);
+            alert("Login Failed!")
+        });
+    }
 
     function findAllUsers() {
         return fetch(self.url + 'user/').then(function (response) {
@@ -45,18 +58,26 @@ function UserServiceClient() {
     function register(user) {
         return fetch('/api/register' , {
             method: 'post',
+            credentials: 'same-origin',
             body: JSON.stringify(user),
             headers: {'content-type': 'application/json'}
-        }).then(function(response) {
-            if (response.ok) {
-                return response.json();
+        }).then(function(response){
+            if (!response.ok) {
+                throw Error(response.statusText);
             }
-            throw new Error('Network response was not ok.');
+            window.location.href= "../profile/profile.template.client.html"
         }).catch(function(error) {
-            alert('username is taken!');
+            console.log(error);
+            alert("Username taken!")
         });
-    }
+        }
 
+    function loadProfile() {
+        return fetch('/api/profile', {credentials: 'same-origin'})
+            .then(function (response) {
+                return response.json();
+            });
+    }
 
     function deleteUser(userId) {
         return fetch(self.url + 'user/' + userId, {

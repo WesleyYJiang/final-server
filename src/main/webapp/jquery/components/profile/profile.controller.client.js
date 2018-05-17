@@ -11,6 +11,7 @@
     var $updateBtn;
     var $logoutBtn;
     var userService = new UserServiceClient();
+    var userId;
 
     function init() {
         $staticUsername = $("#staticUsername");
@@ -22,11 +23,15 @@
         $dateOfBirth = $("#dateOfBirth");
         $updateBtn = $("#updateBtn").click(updateUser);
         $logoutBtn = $("#logoutBtn").click(logout);
-        findUserById(102);
+        loadProfile();
     }
     
     function logout() {
+        userService.logout();
         window.location.replace("../login/login.template.client.html");
+    }
+    function loadProfile() {
+        userService.loadProfile().then(renderUser);
     }
 
     function updateUser() {
@@ -35,11 +40,7 @@
             email: $email.val(),
             dateOfBirth: $dateOfBirth.val()
         };
-        userService.updateUser(102, user);
-    }
-
-    function findUserById(userId) {
-        userService.findUserById(userId).then(renderUser);
+        userService.updateUser(userID, user);
     }
 
     function renderUser(user) {
@@ -50,5 +51,6 @@
         $email.val(user.email);
         $staticRole.val(user.role);
         $dateOfBirth.val(user.dateOfBirth);
+        userID = user.id;
     }
 })();

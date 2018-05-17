@@ -13,8 +13,10 @@
     }
 
     function createUser(){
-
-        if ($passwordFld.val() === $verifyPasswordFld.val()){
+        if ($passwordFld.val() === ''){
+            alert('Password can not be empty!');
+        }
+        else if ($passwordFld.val() === $verifyPasswordFld.val()){
             var user = {
                 username: $usernameFld.val(),
                 password: $passwordFld.val(),
@@ -22,10 +24,10 @@
                 lastName: $lastNameFld.val(),
                 role: "Student"
             };
-             userService.register(user);
+            userService.register(user);
         }
         else {
-            alert('Passwords do not match!')
+            alert('Passwords do not match!');
         }
     }
 })();
