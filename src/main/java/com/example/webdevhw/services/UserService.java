@@ -44,7 +44,7 @@ public class UserService {
   }
 
   @PutMapping("/api/user/{userId}")
-  public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
+  public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser)throws Exception  {
     Optional<User> data = repository.findById(userId);
     if (data.isPresent()) {
       User user = data.get();
@@ -59,7 +59,9 @@ public class UserService {
       repository.save(user);
       return user;
     }
-    return null;
+    else{
+      throw new Exception("bad");
+    }
   }
 
   private User findUserByUsername(String username) {

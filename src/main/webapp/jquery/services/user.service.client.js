@@ -8,6 +8,7 @@ function UserServiceClient() {
     this.loadProfile = loadProfile;
     this.logout = logout;
     this.login = login;
+    this.findByUsername = findByUsername;
     this.url = '/api/';
     var self = this;
 
@@ -43,6 +44,12 @@ function UserServiceClient() {
 
     function findAllUsers() {
         return fetch(self.url + 'user/').then(function (response) {
+            return response.json();
+        });
+    }
+
+    function findByUsername(username) {
+        return fetch('/api/user?username=' + username).then(function (response) {
             return response.json();
         });
     }
@@ -86,18 +93,20 @@ function UserServiceClient() {
     }
 
     function updateUser(userId, user) {
+        console.log(userId);
+        console.log(user);
+        console.log(JSON.stringify(user));
         return fetch(self.url + 'user/' + userId, {
             method: 'put',
             body: JSON.stringify(user),
             headers: {'content-type': 'application/json'}
         }).then(function(response) {
-            if (response.ok) {
-                alert("Update Completed!")
-                return response.json();
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
             }
-            throw new Error('Network response was not ok.');
+            alert("Update Completed!");
         }).catch(function(error) {
-            alert("can not update!")
+            alert("Wrong user ID!");
         });
     }
 

@@ -7,7 +7,7 @@
     var $phoneNum;
     var $email;
     var $staticRole;
-    var $dateOfBirth
+    var $dateOfBirth;
     var $updateBtn;
     var $logoutBtn;
     var userService = new UserServiceClient();
@@ -35,22 +35,32 @@
     }
 
     function updateUser() {
-        var user = {
-            phone: $phoneNum.val(),
-            email: $email.val(),
-            dateOfBirth: $dateOfBirth.val()
-        };
-        userService.updateUser(userID, user);
+        if($dateOfBirth.val() === "") {
+            alert("Please enter your date of birth!");
+        }
+        else {
+            var user = {
+                phone: $phoneNum.val(),
+                email: $email.val(),
+                dateOfBirth: $dateOfBirth.val()
+            };
+            userService.updateUser(userId, user);
+        }
     }
 
     function renderUser(user) {
-        $staticUsername.val(user.username);
-        $firstName.val(user.firstName);
-        $lastName.val(user.lastName);
-        $phoneNum.val(user.phone);
-        $email.val(user.email);
-        $staticRole.val(user.role);
-        $dateOfBirth.val(user.dateOfBirth);
-        userID = user.id;
+        userService.findByUsername(user.username).then(getUserInfo);
+    }
+
+    function getUserInfo(user){
+        console.log(user);
+        userId = user['0']['id'];
+        $staticUsername.val( user['0']['username']);
+        $firstName.val(user['0']['firstName']);
+        $lastName.val(user['0']['lastName']);
+        $phoneNum.val(user['0']['phone']);
+        $email.val(user['0']['email']);
+        $staticRole.val(user['0']['role']);
+        $dateOfBirth.val(user['0']['dateOfBirth']);
     }
 })();
