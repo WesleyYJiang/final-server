@@ -1,4 +1,3 @@
-//IIFE
 (function(){
 	jQuery(main);
 	
@@ -8,7 +7,6 @@
     var editingID = -1;
     var editing = false;
     var editTemplate;
-    var editTemplateOG;
 	
     function main() {
 		tbody = $('tbody');
