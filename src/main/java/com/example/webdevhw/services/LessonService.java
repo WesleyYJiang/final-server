@@ -48,4 +48,9 @@ public class LessonService {
     }
     return null;
   }
+
+  @DeleteMapping("/api/module/{moduleId}/lesson/{lessonId}")
+  public void deleteCourse(@PathVariable("lessonId") int id) {
+    lessonRepository.deleteById(id);
+  }
 }

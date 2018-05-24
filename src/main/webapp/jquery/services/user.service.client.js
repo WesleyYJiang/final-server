@@ -93,9 +93,6 @@ function UserServiceClient() {
     }
 
     function updateUser(userId, user) {
-        console.log(userId);
-        console.log(user);
-        console.log(JSON.stringify(user));
         return fetch(self.url + 'user/' + userId, {
             method: 'put',
             body: JSON.stringify(user),
