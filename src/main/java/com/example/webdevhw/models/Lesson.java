@@ -4,7 +4,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.List;
+
 @Entity
 public class Lesson {
   @Id
@@ -14,7 +19,16 @@ public class Lesson {
   @ManyToOne
   @JsonIgnore
   private Module module;
+  @OneToMany(mappedBy="lesson")
+  private List<Widget> Widget;
 
+  public List<com.example.webdevhw.models.Widget> getWidget() {
+    return Widget;
+  }
+
+  public void setWidget(List<com.example.webdevhw.models.Widget> widget) {
+    Widget = widget;
+  }
   public int getId() {
     return id;
   }

@@ -41,4 +41,7 @@ public class Module {
   public List<Lesson> getLessons() {
     return lessons;
   }
+  public void setLessons(List<Lesson> lessons) {
+    this.lessons = lessons;
+  }
 }
