@@ -20,13 +20,14 @@ public class Lesson {
   @JsonIgnore
   private Module module;
   @OneToMany(mappedBy="lesson")
+  @JsonIgnore
   private List<Widget> Widget;
 
-  public List<com.example.webdevhw.models.Widget> getWidget() {
+  public List<Widget> getWidget() {
     return Widget;
   }
 
-  public void setWidget(List<com.example.webdevhw.models.Widget> widget) {
+  public void setWidget(List<Widget> widget) {
     Widget = widget;
   }
   public int getId() {

@@ -16,10 +16,12 @@ public class Module {
   private int id;
   private String title;
   @OneToMany(mappedBy="module")
+  @JsonIgnore
   private List<Lesson> lessons;
   @ManyToOne
   @JsonIgnore
   private Course course;
+
   public int getId() {
     return id;
   }
