@@ -51,61 +51,61 @@ public class QuestionService {
       return null;
   }
 
-  @PostMapping("/api/exam/{examid}/fill")
-  public Question createFillInTheBlankQuestion(
-          @PathVariable("examid") int examid,
-          @RequestBody FillInTheBlankQuestion newQuestion) {
-    Optional<Exam> data = examRepository.findById(examid);
-
-    if(data.isPresent()) {
-      Exam exam = data.get();
-      newQuestion.setExam(exam);
-      return fillRepo.save(newQuestion);
-    }
-    return null;
-  }
-
-  @PostMapping("/api/exam/{examid}/multi")
-  public Question createMultipleChoiceQuestion(
-          @PathVariable("examid") int examid,
-          @RequestBody MultipleChoiceQuestion newQuestion) {
-    Optional<Exam> data = examRepository.findById(examid);
-
-    if(data.isPresent()) {
-      Exam exam = data.get();
-      newQuestion.setExam(exam);
-      return mcRepo.save(newQuestion);
-    }
-    return null;
-  }
-
-  @PostMapping("/api/exam/{examid}/tf")
-  public Question createTrueFalseQuestion(
-          @PathVariable("examid") int examid,
-          @RequestBody TrueFalseQuestion newQuestion) {
-    Optional<Exam> data = examRepository.findById(examid);
-
-    if(data.isPresent()) {
-      Exam exam = data.get();
-      newQuestion.setExam(exam);
-      return trueRepo.save(newQuestion);
-    }
-    return null;
-  }
-
-  @PostMapping("/api/exam/{examid}/tf")
-  public Question createEssayQuestion(
-          @PathVariable("examid") int examid,
-          @RequestBody EssayQuestion newQuestion) {
-    Optional<Exam> data = examRepository.findById(examid);
-
-    if(data.isPresent()) {
-      Exam exam = data.get();
-      newQuestion.setExam(exam);
-      return essayRepo.save(newQuestion);
-    }
-    return null;
-  }
+//  @PostMapping("/api/exam/{examid}/fill")
+//  public Question createFillInTheBlankQuestion(
+//          @PathVariable("examid") int examid,
+//          @RequestBody FillInTheBlankQuestion newQuestion) {
+//    Optional<Exam> data = examRepository.findById(examid);
+//
+//    if(data.isPresent()) {
+//      Exam exam = data.get();
+//      newQuestion.setExam(exam);
+//      return fillRepo.save(newQuestion);
+//    }
+//    return null;
+//  }
+//
+//  @PostMapping("/api/exam/{examid}/multi")
+//  public Question createMultipleChoiceQuestion(
+//          @PathVariable("examid") int examid,
+//          @RequestBody MultipleChoiceQuestion newQuestion) {
+//    Optional<Exam> data = examRepository.findById(examid);
+//
+//    if(data.isPresent()) {
+//      Exam exam = data.get();
+//      newQuestion.setExam(exam);
+//      return mcRepo.save(newQuestion);
+//    }
+//    return null;
+//  }
+//
+//  @PostMapping("/api/exam/{examid}/tf")
+//  public Question createTrueFalseQuestion(
+//          @PathVariable("examid") int examid,
+//          @RequestBody TrueFalseQuestion newQuestion) {
+//    Optional<Exam> data = examRepository.findById(examid);
+//
+//    if(data.isPresent()) {
+//      Exam exam = data.get();
+//      newQuestion.setExam(exam);
+//      return trueRepo.save(newQuestion);
+//    }
+//    return null;
+//  }
+//
+//  @PostMapping("/api/exam/{examid}/tf")
+//  public Question createEssayQuestion(
+//          @PathVariable("examid") int examid,
+//          @RequestBody EssayQuestion newQuestion) {
+//    Optional<Exam> data = examRepository.findById(examid);
+//
+//    if(data.isPresent()) {
+//      Exam exam = data.get();
+//      newQuestion.setExam(exam);
+//      return essayRepo.save(newQuestion);
+//    }
+//    return null;
+//  }
 
 
 //  @GetMapping("/api/inheritance/joined/fill")
