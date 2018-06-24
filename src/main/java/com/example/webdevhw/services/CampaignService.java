@@ -1,7 +1,7 @@
 package com.example.webdevhw.services;
 
 
-import com.example.webdevhw.models.Course;
+import com.example.webdevhw.models.Campaign;
 import com.example.webdevhw.repositories.CourseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +23,19 @@ public class CourseService {
   CourseRepository courseRepository;
 
   @GetMapping("/api/course")
-  public Iterable<Course> findAllCourses() {
+  public Iterable<Campaign> findAllCourses() {
     return courseRepository.findAll();
   }
 
   @GetMapping("/api/course/{courseId}")
-  public Course findCourseById(@PathVariable("courseId") int courseId) {
-    Optional<Course> data = courseRepository.findById(courseId);
+  public Campaign findCourseById(@PathVariable("courseId") int courseId) {
+    Optional<Campaign> data = courseRepository.findById(courseId);
     return data.orElse(null);
   }
 
   @PostMapping("/api/course")
-  public Course createCourse(@RequestBody Course course) {
-    return courseRepository.save(course);
+  public Campaign createCourse(@RequestBody Campaign campaign) {
+    return courseRepository.save(campaign);
   }
 
   @DeleteMapping("/api/course/{courseId}")
@@ -44,16 +44,18 @@ public class CourseService {
   }
 
   @PutMapping("/api/course/{courseId}")
-  public Course updateCourse(@PathVariable("courseId") int courseId, @RequestBody Course newCourse)
+  public Campaign updateCourse(@PathVariable("courseId") int courseId, @RequestBody Campaign newCampaign)
           throws Exception  {
-    Optional<Course> data = courseRepository.findById(courseId);
+    Optional<Campaign> data = courseRepository.findById(courseId);
     if (data.isPresent()) {
-      Course course = data.get();
-      if (newCourse.getTitle() != null){ course.setTitle(newCourse.getTitle());}
-      if (newCourse.getCreated() != null){course.setCreated(newCourse.getCreated());}
-      if (newCourse.getModified() != null){course.setModified(newCourse.getModified());}
-      courseRepository.save(course);
-      return course;
+      Campaign campaign = data.get();
+      if (newCampaign.getTitle() != null){ campaign.setTitle(newCampaign.getTitle());}
+      if (newCampaign.getCreated() != null){
+        campaign.setCreated(newCampaign.getCreated());}
+      if (newCampaign.getModified() != null){
+        campaign.setModified(newCampaign.getModified());}
+      courseRepository.save(campaign);
+      return campaign;
     }
     else{
       throw new Exception("bad");

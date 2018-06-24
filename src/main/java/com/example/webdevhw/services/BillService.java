@@ -1,8 +1,8 @@
 package com.example.webdevhw.services;
 import com.example.webdevhw.models.Lesson;
-import com.example.webdevhw.models.Module;
+import com.example.webdevhw.models.Action;
 import com.example.webdevhw.repositories.LessonRepository;
-import com.example.webdevhw.repositories.ModuleRepository;
+import com.example.webdevhw.repositories.ActionRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +23,7 @@ public class LessonService {
   @Autowired
   LessonRepository lessonRepository;
   @Autowired
-  ModuleRepository moduleRepository;
+  ActionRepository actionRepository;
 
   @GetMapping("/api/Lesson/{lessonId}")
   public Lesson findCourseById(@PathVariable("lessonId") int lessonId) {
@@ -35,11 +35,11 @@ public class LessonService {
   public Lesson createLesson(
           @PathVariable("moduleId") int moduleId,
           @RequestBody Lesson newLesson) {
-    Optional<Module> data = moduleRepository.findById(moduleId);
+    Optional<Action> data = actionRepository.findById(moduleId);
 
     if(data.isPresent()) {
-      Module module = data.get();
-      newLesson.setModule(module);
+      Action action = data.get();
+      newLesson.setAction(action);
       return lessonRepository.save(newLesson);
     }
     return null;
@@ -48,10 +48,10 @@ public class LessonService {
   @GetMapping("/api/module/{moduleId}/lesson")
   public List<Lesson> findAllLessonsForCourse(
           @PathVariable("moduleId") int moduleId) {
-    Optional<Module> data = moduleRepository.findById(moduleId);
+    Optional<Action> data = actionRepository.findById(moduleId);
     if(data.isPresent()) {
-      Module module = data.get();
-      return module.getLessons();
+      Action action = data.get();
+      return action.getLessons();
     }
     return null;
   }

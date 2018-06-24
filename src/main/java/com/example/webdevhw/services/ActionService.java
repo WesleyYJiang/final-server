@@ -1,6 +1,6 @@
 package com.example.webdevhw.services;
-import com.example.webdevhw.models.Course;
-import com.example.webdevhw.models.Module;
+import com.example.webdevhw.models.Campaign;
+import com.example.webdevhw.models.Action;
 import com.example.webdevhw.repositories.CourseRepository;
 import com.example.webdevhw.repositories.ModuleRepository;
 
@@ -26,26 +26,26 @@ public class ModuleService {
   ModuleRepository moduleRepository;
 
   @PostMapping("/api/course/{courseId}/module")
-  public Module createModule(
+  public Action createModule(
           @PathVariable("courseId") int courseId,
-          @RequestBody Module newModule) {
-    Optional<Course> data = courseRepository.findById(courseId);
+          @RequestBody Action newAction) {
+    Optional<Campaign> data = courseRepository.findById(courseId);
 
     if(data.isPresent()) {
-      Course course = data.get();
-      newModule.setCourse(course);
-      return moduleRepository.save(newModule);
+      Campaign campaign = data.get();
+      newAction.setCampaign(campaign);
+      return moduleRepository.save(newAction);
     }
     return null;
   }
 
   @GetMapping("/api/course/{courseId}/module")
-  public List<Module> findAllModulesForCourse(
+  public List<Action> findAllModulesForCourse(
           @PathVariable("courseId") int courseId) {
-    Optional<Course> data = courseRepository.findById(courseId);
+    Optional<Campaign> data = courseRepository.findById(courseId);
     if(data.isPresent()) {
-      Course course = data.get();
-      return course.getModules();
+      Campaign campaign = data.get();
+      return campaign.getActions();
     }
     return null;
   }
@@ -57,8 +57,8 @@ public class ModuleService {
   }
 
   @GetMapping("/api/module")
-  public List<Module> findAllModules()
+  public List<Action> findAllModules()
   {
-    return (List<Module>) moduleRepository.findAll();
+    return (List<Action>) moduleRepository.findAll();
   }
 }
